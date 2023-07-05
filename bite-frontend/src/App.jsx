@@ -26,6 +26,7 @@ const App = () => {
     </ol>
     <AddItem reloadItems={reloadItems} />
   </>
+  // note: <AddItem {...{reloadItems}} /> also works, but may be too unconventional for readability, {reloadItems} itself does NOT work
 }
 
 export default App

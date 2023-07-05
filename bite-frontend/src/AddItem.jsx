@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { postData } from './utils';
 import PropTypes from 'prop-types';
 
-const AddItem = ({reloadItems}) => {
+const AddItem = props => {
     const defaultState = { name: "", price: "" }
     const [item, setItem] = useState({ ...defaultState });
 
@@ -11,7 +11,7 @@ const AddItem = ({reloadItems}) => {
         console.log(item);
         postData(`http://localhost:8080/api/v1/items`, item).then(() => {
             setItem({ ...defaultState });
-            reloadItems();
+            props.reloadItems();
         })
     }
 
