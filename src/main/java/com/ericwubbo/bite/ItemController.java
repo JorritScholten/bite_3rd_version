@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -25,6 +26,11 @@ public class ItemController {
 
     @DeleteMapping("{id}")
     public void deleteItem(@PathVariable("id") long id) {
-		itemRepository.deleteById(id);
+        itemRepository.deleteById(id);
+    }
+
+    @GetMapping("{id}")
+    public Optional<Item> getById(@PathVariable("id") long id) {
+        return itemRepository.findById(id);
     }
 }
