@@ -34,4 +34,13 @@ class Item {
     public BigDecimal getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
