@@ -1,4 +1,4 @@
-package com.ericwubbo.bite;
+package com.ericwubbo.bite.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

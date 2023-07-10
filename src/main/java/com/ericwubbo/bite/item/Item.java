@@ -1,4 +1,4 @@
-package com.ericwubbo.bite;
+package com.ericwubbo.bite.item;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
-class Item {
+public class Item {
     @Id
     @GeneratedValue
     private Long id;

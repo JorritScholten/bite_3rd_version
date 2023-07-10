@@ -1,5 +1,11 @@
 package com.ericwubbo.bite;
 
+import com.ericwubbo.bite.basket.Basket;
+import com.ericwubbo.bite.basket.BasketRepository;
+import com.ericwubbo.bite.basketitem.BasketItem;
+import com.ericwubbo.bite.basketitem.BasketItemRepository;
+import com.ericwubbo.bite.item.Item;
+import com.ericwubbo.bite.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -7,12 +13,15 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ItemSeeder implements CommandLineRunner {
+public class Seeder implements CommandLineRunner {
     @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
     @Autowired
-    BasketRepository basketRepository;
+    private BasketRepository basketRepository;
+
+    @Autowired
+    private BasketItemRepository basketItemRepository;
 
     @Override
     public void run(String... args) {
@@ -28,7 +37,12 @@ public class ItemSeeder implements CommandLineRunner {
             Item pears = itemRepository.findByName("pears").stream().findFirst().get();
             var basket = new Basket();
             BasketItem applesOrder = new BasketItem(apples, basket, 1);
-            System.out.println(apples);
+            BasketItem pearsOrder = new BasketItem(pears, basket, 2);
+            basketRepository.save(basket); // does not save the basketitems without the @OneToMany
+            basketItemRepository.save(applesOrder);
+            basketItemRepository.save(pearsOrder);
+
+            // even does not save the basketitems WITH the @OneToMamy
         }
         System.out.println(count + " items in the database.");
     }

@@ -11,14 +11,14 @@
     Daarna? Baeldung
     Daarna? Joris' pres
 
-Could not determine recommended JdbcType for `com.ericwubbo.bite.BasketItem`
+Could not determine recommended JdbcType for `com.ericwubbo.bite.basketitem.BasketItem`
 
 
 
 1 exp, 1 studeer, dan 1 exp/2studeer als geen vooruitgang!
 
 Problemen:
-Could not determine recommended JdbcType for `com.ericwubbo.bite.BasketItem`
+Could not determine recommended JdbcType for `com.ericwubbo.bite.basketitem.BasketItem`
 Voor mij is het logisch
 
 Basket =
