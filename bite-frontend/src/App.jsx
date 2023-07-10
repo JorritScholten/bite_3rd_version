@@ -1,32 +1,13 @@
-import './App.css'
-import { useEffect, useState } from 'react';
-import AddItem from './AddItem';
-import { deleteById } from './itemServices';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Order from './Order';
+import Manage from './Manage';
 
-const formatAsPrice = new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format;
-
-const App = () => {
-  const [items, setItems] = useState([]);
-  const [versionGuid, updateVersionGuid] = useState(0)
-
-  const reloadItems = () => updateVersionGuid(versionGuid + 1)
-
-  const deleteItem = id => deleteById(id).then(reloadItems);
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/api/v1/items`)
-      .then(response => response.json())
-      .then(actualData => setItems(actualData))
-      .catch(err => console.log(`An error has occurred: ${err.message}.`))
-  }, [versionGuid]);
-
-  return <>
-    <ol>
-      {items.map(item => <li key={item.id}>{item.name} {formatAsPrice(item.price)}<button onClick={() => deleteItem(item.id)}>Delete</button></li>)}
-    </ol>
-    <AddItem reloadItems={reloadItems} />
-  </>
-  // note: <AddItem {...{reloadItems}} /> also works, but may be too unconventional for readability, {reloadItems} itself does NOT work
-}
+const App = () => <>
+  <Routes>
+    <Route path="/" element={<Order />} />
+    <Route path="/manage" element={<Manage />} />
+  </Routes>
+</>
 
 export default App

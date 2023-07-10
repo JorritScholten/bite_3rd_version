@@ -15,4 +15,11 @@ async function postData(url, data) {
     return response.json(); // parses JSON response into native JavaScript objects
 }
 
-export { postData }
+const formatAsPrice = priceInCents => new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format(priceInCents / 100);
+
+// from https://stackoverflow.com/questions/34698905/how-can-i-clone-a-javascript-object-except-for-one-key
+const omit = (prop, { [prop]: _, ...rest }) => rest;
+
+const toInternalCentPrices = items => items.map(item => ({ ...item, price: item.price * 100 }))
+
+export { formatAsPrice, omit, postData, toInternalCentPrices };

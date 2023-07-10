@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postData } from './utils';
+import { post} from './itemServices';
 import PropTypes from 'prop-types';
 
 const AddItem = props => {
@@ -9,7 +9,7 @@ const AddItem = props => {
     const submit = event => {
         event.preventDefault();
         console.log(item);
-        postData(`http://localhost:8080/api/v1/items`, item).then(() => {
+        post(item).then(() => {
             setItem({ ...defaultState });
             props.reloadItems();
         })
